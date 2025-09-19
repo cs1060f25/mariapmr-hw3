@@ -49,7 +49,7 @@
     <!-- Biometric Setup Screen -->
      <div id="biometric-setup" class="screen">
         <div class="screen-content">
-            <div class="back-button" onClick="goToScreen('welcome-screen')">
+            <div class="back-button" onclick="goToScreen('welcome-screen')">
                 <span>←</span>
             </div>
 
@@ -59,14 +59,16 @@
                 <p>Set up biometric authentication to protect your identity and matches.</p>
 
                 <div class="biometric-setup">
-                    <div class="fingerprint-icon">
-                        👆
-                    </div>
+                    <div class="fingerprint-scanner" id="fingerprint-scanner">
+                      <div class="fingerprint-icon">
+                          👆
+                      </div>
 
-                    <div class="scan-animation"></div>
+                      <div class="scan-animation"></div>
+                    </div>
                 </div>
 
-                <p class="setup-status">Place your finger on the sensor</p>
+                <p class="setup-status" id="setup-status">Place your finger on the sensor</p>
 
                 <button class="btn btn--primary" id="start-scan" onclick="startBiometricScan()">
                     Start Setup
