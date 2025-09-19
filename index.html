@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Welcome Screen -->
-    <div id="welcome-screen">
+    <div id="welcome-screen" class="screen active">
         <div class="screen-content">
             <div class="app-logo">
                 <div class="logo-icon">💖</div>
@@ -45,5 +45,34 @@
             </div>
         </div>
     </div>
+
+    <!-- Biometric Setup Screen -->
+     <div id="biometric-setup" class="screen">
+        <div class="screen-content">
+            <div class="back-button" onClick="goToScreen('welcome-screen')">
+                <span>←</span>
+            </div>
+
+            <div class="setup-content">
+                <h2>Secure Your Privacy</h2>
+
+                <p>Set up biometric authentication to protect your identity and matches.</p>
+
+                <div class="biometric-setup">
+                    <div class="fingerprint-icon">
+                        👆
+                    </div>
+
+                    <div class="scan-animation"></div>
+                </div>
+
+                <p class="setup-status">Place your finger on the sensor</p>
+
+                <button class="btn">
+                    Start Setup
+                </button>
+            </div>
+        </div>
+     </div>
 </body>
 </html>
