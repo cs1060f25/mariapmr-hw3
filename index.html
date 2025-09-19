@@ -39,7 +39,7 @@
                     <span>Secure anonymous messaging</span>
                 </div>
 
-                <button class="btn">
+                <button class="btn btn--primary btn--full-width" onclick="goToScreen('biometric-setup')">
                     Get Started
                 </button>
             </div>
@@ -68,11 +68,238 @@
 
                 <p class="setup-status">Place your finger on the sensor</p>
 
-                <button class="btn">
+                <button class="btn btn--primary" id="start-scan" onclick="startBiometricScan()">
                     Start Setup
                 </button>
             </div>
         </div>
      </div>
+
+     <!-- Main Dashboard -->
+    <div id="dashboard" class="screen">
+        <div class="screen-content">
+            <header class="dashboard-header">
+                <h2>Dashboard</h2>
+
+                <div class="privacy-indicator">
+                    <span class="security-icon">🔒</span>
+
+                    <span>Secure</span>
+                </div>
+            </header>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card" onclick="goToScreen('express-interest')">
+                    <div class="card-icon">💕</div>
+
+                    <h3>Express Interest</h3>
+
+                    <p>Add someone you're interested in</p>
+                </div>
+                
+                <div class="dashboard-card" onclick="goToScreen('bot-confidant')">
+                    <div class="card-icon">🤖</div>
+
+                    <h3>Bot Confidant</h3>
+
+                    <p>Talk about your feelings</p>
+                </div>
+                
+                <div class="dashboard-card" onclick="goToScreen('matches')">
+                    <div class="card-icon">✨</div>
+
+                    <h3>Matches</h3>
+
+                    <p>View mutual interests</p>
+
+                    <div class="notification-badge" id="match-badge">1</div>
+                </div>
+                
+                <div class="dashboard-card" onclick="showNotImplemented()">
+                    <div class="card-icon">⚙️</div>
+
+                    <h3>Settings</h3>
+
+                    <p>Privacy & preferences</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Express Interest Screen -->
+    <div id="express-interest" class="screen">
+        <div class="screen-content">
+            <header class="screen-header">
+                <div class="back-button" onclick="goToScreen('dashboard')">
+                    <span>←</span>
+                </div>
+                <h2>Express Interest</h2>
+            </header>
+            
+            <div class="search-section">
+                <div class="form-group">
+                    <label class="form-label">Search by name or handle</label>
+                    <input type="text" class="form-control" id="person-search" placeholder="Enter name or @handle">
+                </div>
+                <button class="btn btn--secondary" onclick="searchPerson()">Search</button>
+            </div>
+            
+            <div class="search-results" id="search-results"></div>
+            
+            <div class="suggested-people">
+                <h3>Suggested People</h3>
+                <div class="people-list" id="people-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bot Confidant Screen -->
+    <div id="bot-confidant" class="screen">
+        <div class="screen-content">
+            <header class="screen-header">
+                <div class="back-button" onclick="goToScreen('dashboard')">
+                    <span>←</span>
+                </div>
+
+                <h2>Bot Confidant</h2>
+
+                <div class="online-indicator">
+                    <span class="status-dot"></span>
+
+                    <span>Always here for you</span>
+                </div>
+            </header>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="bot-messages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">🤖</div>
+
+                        <div class="message-content">
+                            <p>Hi there! I'm here to listen and support you through any feelings or concerns you might have. How are you feeling today?</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" class="form-control" id="bot-input" placeholder="Share your thoughts...">
+
+                    <button class="btn btn--primary" onclick="sendBotMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matches Screen -->
+    <div id="matches" class="screen">
+        <div class="screen-content">
+            <header class="screen-header">
+                <div class="back-button" onclick="goToScreen('dashboard')">
+                    <span>←</span>
+                </div>
+
+                <h2>Your Matches</h2>
+            </header>
+            
+            <div class="matches-list">
+                <div class="match-card" onclick="goToScreen('anonymous-chat')">
+                    <div class="match-info">
+                        <div class="match-avatar">💜</div>
+
+                        <div class="match-details">
+                            <h3>Anonymous Match</h3>
+
+                            <p>Mutual interest detected!</p>
+
+                            <span class="match-time">3 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="match-actions">
+                        <button class="btn btn--primary btn--sm">Chat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anonymous Chat Screen -->
+    <div id="anonymous-chat" class="screen">
+        <div class="screen-content">
+            <header class="screen-header">
+                <div class="back-button" onclick="goToScreen('matches')">
+                    <span>←</span>
+                </div>
+
+                <div class="chat-header-info">
+                    <h2>Anonymous Chat</h2>
+
+                    <div class="encryption-indicator">
+                        <span class="security-icon">🔒</span>
+
+                        <span>End-to-end encrypted</span>
+                    </div>
+                </div>
+
+                <button class="btn btn--outline btn--sm" onclick="showRevealDialog()">
+                    Reveal Identity
+                </button>
+            </header>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="anonymous-messages">
+                    
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" class="form-control" id="anonymous-input" placeholder="Type your message...">
+
+                    <button class="btn btn--primary" onclick="sendAnonymousMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+
+        <div class="modal-content">
+            <h3 id="modal-title">Confirm Action</h3>
+
+            <p id="modal-message">Are you sure you want to proceed?</p>
+
+            <div class="modal-actions">
+                <button class="btn btn--secondary" onclick="closeModal()">Cancel</button>
+
+                <button class="btn btn--primary" id="modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+
+        <div class="modal-content success">
+            <div class="success-icon">✅</div>
+
+            <h3 id="success-title">Success!</h3>
+
+            <p id="success-message">Your action was completed successfully.</p>
+
+            <button class="btn btn--primary" onclick="closeModal()">Continue</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+
+        <p id="loading-text">Processing...</p>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
